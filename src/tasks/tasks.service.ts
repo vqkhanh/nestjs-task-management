@@ -54,9 +54,11 @@ export class TasksService {
   //   this.tasks = this.tasks.filter((x) => x.id != found.id);
   // }
 
-  // updateTaskStatus(id: string, status: TaskStatus) {
-  //   const task = this.getTaskById(id);
-  //   task.status = status;
-  //   return task;
-  // }
+  async updateTaskStatus(id: string, status: TaskStatus) {
+    const task = await this.getTaskById(id);
+
+    task.status = status;
+    await this.taskRepository.save(task);
+    return task;
+  }
 }
