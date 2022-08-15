@@ -38,11 +38,11 @@ export class TasksService {
     }
   }
 
-  // async updateTaskStatus(id: string, status: TaskStatus) {
-  //   const task = await this.getTaskById(id);
+  async updateTaskStatus(id: string, status: TaskStatus, user: User) {
+    const task = await this.getTaskById(id, user);
 
-  //   task.status = status;
-  //   await this.taskRepository.save(task);
-  //   return task;
-  // }
+    task.status = status;
+    await this.taskRepository.save(task);
+    return task;
+  }
 }
