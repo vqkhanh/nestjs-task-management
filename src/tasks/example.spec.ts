@@ -1,6 +1,9 @@
+function addNumber(num1, num2) {
+  return num1 + num2;
+}
+
 describe('example test', () => {
-  it('equals true', () => {
-    expect(true).toEqual(true);
-    expect(true).toEqual(false);
+  it('addNumbers', () => {
+    expect(addNumber(2, 2)).toEqual(4);
   });
 });
