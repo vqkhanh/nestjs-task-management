@@ -15,7 +15,7 @@ const mockUser = {
 
 describe('TasksService', () => {
   let tasksService: TasksService;
-  let tasksRepository: TasksRepository;
+  let tasksRepository;
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
@@ -30,12 +30,14 @@ describe('TasksService', () => {
   });
 
   describe('getTasks', () => {
-    it('call TasksRepository.getTasks and return the result', () => {
+    it('call TasksRepository.getTasks and return the result', async () => {
       expect(tasksRepository.getTasks).not.toHaveBeenCalled();
 
       // call tasksService.getTasks, which should then call the repository's getTasks
-      tasksService.getTasks(null, mockUser);
+      tasksRepository.getTasks.mockResolvedValue('someValue');
+      const result = await tasksService.getTasks(null, mockUser);
       expect(tasksRepository.getTasks).toHaveBeenCalled();
+      expect(result).toEqual('someValue');
     });
   });
 });
