@@ -31,12 +31,8 @@ describe('TasksService', () => {
 
   describe('getTasks', () => {
     it('call TasksRepository.getTasks and return the result', async () => {
-      expect(tasksRepository.getTasks).not.toHaveBeenCalled();
-
-      // call tasksService.getTasks, which should then call the repository's getTasks
       tasksRepository.getTasks.mockResolvedValue('someValue');
       const result = await tasksService.getTasks(null, mockUser);
-      expect(tasksRepository.getTasks).toHaveBeenCalled();
       expect(result).toEqual('someValue');
     });
   });
